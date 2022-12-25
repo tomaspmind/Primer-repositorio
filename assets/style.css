@@ -60,7 +60,6 @@ header nav a{
 
 .h3-primero {
     min-height: 15vh;
-    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,6 +214,22 @@ td:hover{
     color: white;
 }
 
+.div-botones{
+    background-color: rgb(53, 50, 50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+}
+
+.div-botones a{
+    color: white;
+    padding: 1rem;
+}
+
+td{
+    width: 30%;
+}
 
 @media (min-width: 799px){
     .div-carta-grande{
