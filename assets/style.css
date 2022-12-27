@@ -95,6 +95,7 @@ header nav a{
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
+    padding: 1rem;
 }
 
 footer{
@@ -201,12 +202,14 @@ table, th, td, tr{
 
 .card img:hover{
     padding: 0;
+    transition-duration: 0.7s;
 }
 
 footer div img:hover{
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 10px;
+    transition-duration: 0.7s;
 }
 
 td:hover{
