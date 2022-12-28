@@ -15,7 +15,11 @@ header{
 }
 
 .navbar-toggler-icon{
-    background-image: url(./images/prueba.png);
+    color: white !important;
+}
+
+.navbar-brand {
+    display: flex;
 }
 
 header img{
@@ -27,7 +31,7 @@ header img{
 header nav a{
     border: 1px solid black;
     background-color: black;
-    color: white;
+    color: white !important;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -63,7 +67,6 @@ header nav a{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(53, 50, 50);
     color: white;
 }
 
@@ -228,7 +231,10 @@ td:hover{
 }
 
 .div-botones{
-    background-color: rgb(53, 50, 50);
+    background-image: url(./images/fondo4.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
