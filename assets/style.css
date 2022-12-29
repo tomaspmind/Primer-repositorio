@@ -43,6 +43,7 @@ header nav a{
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .unico a{
@@ -59,6 +60,10 @@ header nav a{
 }
 
 .nav-link:hover{
+    color: brown !important;
+}
+
+.navbar-brand:hover{
     color: brown !important;
 }
 
@@ -146,7 +151,7 @@ footer div img{
 .div-form {
     display: flex;
     flex-direction: column;
-    width: 28rem;
+    width: 17rem;
 } 
 
 main, .main-contact {
@@ -231,7 +236,7 @@ td:hover{
 }
 
 .div-botones{
-    background-image: url(./images/fondo4.png);
+    background-image: url(./images/fondo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
