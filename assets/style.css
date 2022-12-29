@@ -255,6 +255,13 @@ td{
     width: 30%;
 }
 
+.bold{
+    font-weight: bold;
+}
+.texto{
+    padding: 10px;
+}
+
 @media (min-width: 799px){
     .div-carta-grande{
         display: flex;

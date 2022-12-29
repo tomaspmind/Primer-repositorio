@@ -12,7 +12,7 @@ function crearCards (lista, va){
         </div>
             <div class="div-cartas">
             <h5>Price: $${ recorrido.price}</h5>
-            <a href="#" class="btn btn-danger">View more..</a>
+            <a href="./events-card.html" class="btn btn-danger">View more..</a>
         </div>
         </div>
         </div>`
