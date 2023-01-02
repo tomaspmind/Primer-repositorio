@@ -1,6 +1,6 @@
-let where = document.getElementById("section-cards")
+let ubicacion = document.getElementById("section-cards")
 
-function crearCards (lista, va){
+function crearCards (lista, dondeVa){
     let todasLasCards = ""
     for (let recorrido of lista.events){
         let template = `<div class="card" style="width: 18rem;">
@@ -19,7 +19,7 @@ function crearCards (lista, va){
 
         todasLasCards += template
     }
-    va.innerHTML = todasLasCards
+    dondeVa.innerHTML = todasLasCards
 }
-crearCards (data, where)
+crearCards (data, ubicacion)
 
