@@ -13,7 +13,7 @@ function crearCards (lista, dondeVa){
         </div>
             <div class="div-cartas">
             <h5>Price: $${ recorrido.price}</h5>
-            <a href="#" class="btn btn-danger">View more..</a>
+            <a href="./events-card.html?idCarta=${recorrido._id}" class="btn btn-danger">View more..</a>
         </div>
         </div>
         </div>`
@@ -23,3 +23,29 @@ function crearCards (lista, dondeVa){
     dondeVa.innerHTML = todasLasCards
 }
 crearCards (data, ubicacion)
+
+const sinRepetir = []
+const categorias = data.events.map(events => events.category)
+
+categorias.forEach(categorias => {
+if (!sinRepetir.includes (categorias)){
+sinRepetir.push (categorias)}
+})
+
+console.log(sinRepetir)
+
+
+const check = document.getElementById("checkboxes")
+check.innerHTML = generarCheckbox(sinRepetir)
+
+function generarCheckbox (categorias){
+    let template = ""
+    categorias.forEach(categorias =>{
+        template += `<div class="form-check form-check-inline">   
+        <label class="form-check-label">${categorias}
+	<input class="form-check-input" type="checkbox" value="${categorias}">
+	</label>
+</div>`
+    })
+    return template
+}

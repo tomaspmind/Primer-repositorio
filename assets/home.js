@@ -1,5 +1,11 @@
-let ubicacion = document.getElementById("section-cards")
+//----------Sin busqueda quedan igual las cards----------
 
+/* const templateInicial = crearCards (data, ubicacion)
+ubicacion.innerHTML = templateInicial */
+
+//-------------creacion de las cartas---------------------------
+
+let ubicacion = document.getElementById("section-cards")
 function crearCards (lista, dondeVa){
     let todasLasCards = ""
     for (let recorrido of lista.events){
@@ -12,7 +18,7 @@ function crearCards (lista, dondeVa){
         </div>
             <div class="div-cartas">
             <h5>Price: $${ recorrido.price}</h5>
-            <a href="./events-card.html" class="btn btn-danger">View more..</a>
+            <a href="./events-card.html?idCarta=${recorrido._id}" class="btn btn-danger">View more..</a>
         </div>
         </div>
         </div>`
@@ -23,3 +29,41 @@ function crearCards (lista, dondeVa){
 }
 crearCards (data, ubicacion)
 
+//---------Filtro por categoria (crea un array de las 7 categorias)----------------
+
+const sinRepetir = []
+const categorias = data.events.map(events => events.category)
+
+categorias.forEach(categorias => {
+if (!sinRepetir.includes (categorias)){
+sinRepetir.push (categorias)}
+})
+
+console.log(sinRepetir)
+
+//------------Creacion de los botones checkbox----------------------
+
+const check = document.getElementById("checkboxes")
+check.innerHTML = generarCheckbox(sinRepetir)
+
+function generarCheckbox (categorias){
+    let template = ""
+    categorias.forEach(categorias =>{
+        template += `<div class="form-check form-check-inline">   
+        <label class="form-check-label">${categorias}
+	<input class="form-check-input" type="checkbox" value="${categorias}">
+	</label>
+</div>`
+    })
+    return template
+}
+
+//----------------Filtro del buscador de cartas-----------------------
+
+const buscador = document.getElementById("busqueda")
+
+buscador.addEventListener("input", busquedaDeTexto)
+
+function busquedaDeTexto(evento){
+    
+}

@@ -262,13 +262,23 @@ td{
     padding: 10px;
 }
 
+.caja-imagen img{
+    height: 20rem;
+    width: 95%;
+}
+
+.d-flex{
+    gap: 3px;
+}
+
 @media (min-width: 799px){
     .div-carta-grande{
         display: flex;
         flex-direction: row;
         align-items: center;
-        height: 25rem;
-        width: 80%;
+        width: 68%;
+        justify-content: center;
+        gap: 1rem;
     }
     .main-p6 {
         display: flex;
