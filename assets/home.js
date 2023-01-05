@@ -55,7 +55,7 @@ function generarCheckbox (categorias){
 
 
 
-    let checkbuttons = document.querySelectorAll(".form-check-input")
+
 
     function checkFilter (touchs, categoriesList){
         let values = [];
@@ -64,7 +64,7 @@ function generarCheckbox (categorias){
             values.push(touch.value.toLowerCase())
         }
         let filters = categoriesList.filter(food => values.includes(food.category.toLowerCase()))
-        if (filters.length === 0){
+        if (values.length === 0){
             return categoriesList
         }
         else{
@@ -85,6 +85,7 @@ function searchFood(inputFind, categoriesList){
 
 
 function filtroCruzado(evento){
+    let checkbuttons = document.querySelectorAll(".form-check-input")
     const filterPerFind = searchFood (search, data.events)
     const filterPerCheack = checkFilter (checkbuttons, filterPerFind)
     if(filterPerCheack.length === 0) {
