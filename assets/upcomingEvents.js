@@ -1,10 +1,11 @@
 let ubicacion = document.getElementById("section-cards")
 const search = document.getElementById('busqueda')
 
-function crearCards (lista, dondeVa){
+const upcoming = data.events.filter( equis => equis.date >= data.currentDate )
+
+function crearCards ( lista ){
     let todasLasCards = ""
     for (let recorrido of lista){
-        if (recorrido.date > data.currentDate){
         let template = `<div class="card" style="width: 18rem;">
         <img src="${recorrido.image}" class="card-img-top" alt="${recorrido.name}">
         <div class="card-body">
@@ -19,16 +20,15 @@ function crearCards (lista, dondeVa){
         </div>
         </div>`
         todasLasCards += template
-}
     }
     return todasLasCards
 }
-renderTemplate (crearCards(data.events), ubicacion)
+renderTemplate (crearCards (upcoming), ubicacion)
 
 //---------Filtro por categoria (crea un array de las 7 categorias)----------------
 
 const sinRepetir = []
-const categorias = data.events.map(events => events.category)
+const categorias = upcoming.map(events => events.category)
 
 categorias.forEach(categorias => {
 if (!sinRepetir.includes (categorias)){
@@ -86,7 +86,7 @@ function searchFood(inputFind, categoriesList){
 
 function filtroCruzado(evento){
     let checkbuttons = document.querySelectorAll(".form-check-input")
-    const filterPerFind = searchFood (search, data.events)
+    const filterPerFind = searchFood (search, upcoming)
     const filterPerCheack = checkFilter (checkbuttons, filterPerFind)
     if(filterPerCheack.length === 0) {
         let alert = `<h4 class="alert">THERES NO COICIDENCES WITH YOUR SEARCH</h4>`
