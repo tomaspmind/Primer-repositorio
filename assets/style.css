@@ -80,7 +80,6 @@ header nav a{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 1rem;
     flex-wrap: wrap;
 }
 
@@ -148,12 +147,6 @@ footer div img{
     -moz-box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.75);
 }
 
-.div-form {
-    display: flex;
-    flex-direction: column;
-    width: 17rem;
-} 
-
 main, .main-contact {
     background-color: #95a6b1;
 }
@@ -163,13 +156,6 @@ main, .main-contact {
     flex-direction: column;
 }
 
-.div-contact{
-    height: 59vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
 
 table, th, td, tr{
     border: 2px solid white;
@@ -211,6 +197,12 @@ table, th, td, tr{
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
+}
+
+body{
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
 }
 
 .lupa{
@@ -271,6 +263,22 @@ td{
     gap: 3px;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.div-form{
+    display: flex;
+    justify-content: center;
+}
+
+.display{
+    display: flex;
+}
+
 @media (min-width: 799px){
     .div-carta-grande{
         display: flex;
@@ -289,3 +297,12 @@ td{
     }
     }
     
+
+@media (min-width: 426px){
+    form{
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    width: 25.5rem;
+}
+}

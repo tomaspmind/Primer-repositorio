@@ -1,14 +1,10 @@
-//----------Sin busqueda quedan igual las cards----------
-
-/* const templateInicial = crearCards (data, ubicacion)
-ubicacion.innerHTML = templateInicial */
-
 //-------------creacion de las cartas---------------------------
+const search = document.getElementById('busqueda')
 
-let ubicacion = document.getElementById("section-cards")
+const ubicacion = document.getElementById("section-cards")
 function crearCards (lista, dondeVa){
     let todasLasCards = ""
-    for (let recorrido of lista.events){
+    for (let recorrido of lista){
         let template = `<div class="card" style="width: 18rem;">
         <img src="${recorrido.image}" class="card-img-top" alt="${recorrido.name}">
         <div class="card-body">
@@ -25,9 +21,9 @@ function crearCards (lista, dondeVa){
 
         todasLasCards += template
     }
-    dondeVa.innerHTML = todasLasCards
+    return todasLasCards
 }
-crearCards (data, ubicacion)
+renderTemplate (crearCards(data.events), ubicacion)
 
 //---------Filtro por categoria (crea un array de las 7 categorias)----------------
 
@@ -39,9 +35,6 @@ if (!sinRepetir.includes (categorias)){
 sinRepetir.push (categorias)}
 })
 
-console.log(sinRepetir)
-
-//------------Creacion de los botones checkbox----------------------
 
 const check = document.getElementById("checkboxes")
 check.innerHTML = generarCheckbox(sinRepetir)
@@ -51,19 +44,61 @@ function generarCheckbox (categorias){
     categorias.forEach(categorias =>{
         template += `<div class="form-check form-check-inline">   
         <label class="form-check-label">${categorias}
-	<input class="form-check-input" type="checkbox" value="${categorias}">
-	</label>
-</div>`
+        <input class="form-check-input" type="checkbox" value="${categorias}">
+        </label>
+        </div>`
     })
     return template
 }
 
-//----------------Filtro del buscador de cartas-----------------------
+// -----------------------------------------------------------------
 
-const buscador = document.getElementById("busqueda")
 
-buscador.addEventListener("input", busquedaDeTexto)
 
-function busquedaDeTexto(evento){
-    
+    let checkbuttons = document.querySelectorAll(".form-check-input")
+
+    function checkFilter (touchs, categoriesList){
+        let values = [];
+        for (let touch of touchs){
+            if (touch.checked)
+            values.push(touch.value.toLowerCase())
+        }
+        let filters = categoriesList.filter(food => values.includes(food.category.toLowerCase()))
+        if (filters.length === 0){
+            return categoriesList
+        }
+        else{
+            return filters
+        }
+    }
+    check.addEventListener('change', filtroCruzado)
+
+
+search.addEventListener( 'input', filtroCruzado)
+
+function searchFood(inputFind, categoriesList){
+    const filterFood = categoriesList.filter(food => {
+        return food.name.toLowerCase().startsWith(inputFind.value.toLowerCase())
+    });
+    return filterFood
 }
+
+
+function filtroCruzado(evento){
+    const filterPerFind = searchFood (search, data.events)
+    const filterPerCheack = checkFilter (checkbuttons, filterPerFind)
+    if(filterPerCheack.length === 0) {
+        let alert = `<h4 class="alert">THERES NO COICIDENCES WITH YOUR SEARCH</h4>`
+        renderTemplate(alert, ubicacion)
+    }
+    else {
+        renderTemplate(crearCards(filterPerCheack), ubicacion)
+    }
+}
+
+
+function renderTemplate(template, where){
+    where.innerHTML = template
+}
+
+filtroCruzado()
