@@ -57,47 +57,17 @@ crossorigin="anonymous">
               <tr>
                 <th colspan="3" class="bg-secondary">Events statistics</th>
               </tr>
-            </thead>
-            <tbody>
               <tr class="tr-titulo">
                 <td>Events with the highest percentage of attendance</td>
                 <td>Events with the lowest percentage of attendace</td>
                 <td>Event with larger capacity</td>
               </tr>
+            </thead>
+            <tbody id="tbody1">
               <tr>
-                <td>Collectivities party</td>
-                <td>Just for your kitchen</td>
-                <td>Comicon</td>
-              </tr>
-              <tr>
-                <td>Korean style</td>
-                <td>Halloween night</td>
-                <td>Metallica in concert</td>
-              </tr>
-              <tr>
-                <td>Comicon</td>
-                <td>School book fair</td>
-                <td>Electronic fest</td>
-              </tr>
-              <tr>
-                <td>Metallica in concert</td>
-                <td>Jurrasic Park</td>
-                <td>15K New York</td>
-              </tr>
-              <tr>
-                <td>10k for life</td>
-                <td>15k New York</td>
-                <td>School book fair</td>
-              </tr>
-              <tr>
-                <td>Parisian museum</td>
-                <td>Batman</td>
-                <td>Jurrasic Park</td>
-              </tr>
-              <tr>
-                <td>Avenger</td>
-                <td>Electronic fest</td>
-                <td>Just for your kitchen</td>
+                <td id="mayorporcentaje"></td>
+                <td id="menorporcentaje"></td>
+                <td id="eventomayor"></td>
               </tr>
             </tbody>
           </table>
@@ -106,48 +76,14 @@ crossorigin="anonymous">
             <tr>
               <th colspan="3" class="bg-secondary">Upcoming events statistics by category</th>
             </tr>
-          </thead>
-          <tbody>
             <tr class="tr-titulo">
               <td>Categories</td>
               <td>Revenues</td>
               <td>Percentage of attendace</td>
             </tr>
-            <tr>
-              <td>Food Fair</td>
-              <td>$427.560</td>
-              <td>Korean style (95%)</td>
-            </tr>
-            <tr>
-                <td>Museum</td>
-                <td>$28.700.000</td>
-                <td>Parisian Museum (100%)</td>
-              </tr>
-              <tr>
-                <td>Costume Party</td>
-                <td>$108.000</td>
-                <td>Halloween Night (75%)</td>
-              </tr>
-              <tr>
-                <td>Music Concert</td>
-                <td>$20.700.000</td>
-                <td>Metallica in concert (100%)</td>
-              </tr>
-              <tr>
-                <td>Race</td>
-                <td>$7.709.400</td>
-                <td>15k New York (85%)</td>
-              </tr>
-              <tr>
-                <td>Book Exchange</td>
-                <td>$123.286</td>
-                <td>School's Book Fair (82%)</td>
-              </tr>
-              <tr>
-                <td>Cinema</td>
-                <td>$2.250.000</td>
-                <td>Avengers (100%)</td>
-              </tr>
+          </thead>
+          <tbody id="tbody2">
+            
           </tbody>
         </table>
         
@@ -156,48 +92,14 @@ crossorigin="anonymous">
               <tr>
                 <th colspan="3" class="bg-secondary">Past Events statistic by category</th>
               </tr>
-            </thead>
-            <tbody>
               <tr class="tr-titulo">
                 <td>Categories</td>
                 <td>Revenues</td>
                 <td>Percentage of attendace</td>
               </tr>
-              <tr>
-                <td>Food Fair</td>
-                <td>$213.780</td>
-                <td>Collectivities Party (95%)</td>
-              </tr>
-              <tr>
-                  <td>Museum</td>
-                  <td>$988.380</td>
-                  <td>Jurassic Park (80%)</td>
-                </tr>
-                <tr>
-                  <td>Costume Party</td>
-                  <td>$5.940.000</td>
-                  <td>Comicon (91.5%)</td>
-                </tr>
-                <tr>
-                  <td>Music Concert</td>
-                  <td>$27.575.000</td>
-                  <td>Electronic Fest (79.9%)</td>
-                </tr>
-                <tr>
-                  <td>Race</td>
-                  <td>$77.094</td>
-                  <td>10k For Life (85%)</td>
-                </tr>
-                <tr>
-                  <td>Book Exchange</td>
-                  <td>$9.000.000</td>
-                  <td>Just for your kitchen (69%)</td>
-                </tr>
-                <tr>
-                  <td>Cinema</td>
-                  <td>$2.092.500</td>
-                  <td>Batman (84%)</td>
-                </tr>
+            </thead>
+            <tbody id="tbody3">
+              
             </tbody>
           </table>
     </div>
@@ -213,5 +115,6 @@ crossorigin="anonymous">
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="./assets/stats.js"></script>
 </body>
 </html>

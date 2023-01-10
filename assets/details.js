@@ -3,13 +3,18 @@ let parametros = new URLSearchParams(cadenaParametroUrl)
 let id = parametros.get("idCarta")
 
 let contenedor = document.getElementById("contenedor")
+let datosJson;
 
-let objeto = data.events
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+.then(response => response.json())
+.then(datos => {
+    datosJson = datos
+    crearDetaills(datosJson.events.find(objeto => objeto._id == id), contenedor)
+})
+.catch(error => error.message)
 
-let objetoEncontrado = objeto.find(objeto => objeto._id == id)
-
-function crearDetaills(objeto) {
-    contenedor.innerHTML = "" 
+function crearDetaills(objeto, ubicacion) {
+    ubicacion.innerHTML = "" 
     template = `<div class="caja-imagen">
     <img src="${objeto.image}" alt="${objeto.name}">
 </div>
@@ -21,6 +26,6 @@ function crearDetaills(objeto) {
     <p class="bold">Price: $${objeto.price}</p>
 </div>`
 
-    contenedor.innerHTML=template
+    ubicacion.innerHTML=template
 }
-crearDetaills(objetoEncontrado)
+

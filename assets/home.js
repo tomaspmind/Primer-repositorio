@@ -1,8 +1,29 @@
-//-------------creacion de las cartas---------------------------
+const ubicacionCards = document.getElementById("section-cards")
+const check = document.getElementById("checkboxes") 
 const search = document.getElementById('busqueda')
 
-const ubicacion = document.getElementById("section-cards")
-function crearCards (lista, dondeVa){
+let dataJson;
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+.then(response => response.json())
+.then(datos => {
+
+    dataJson = datos
+
+        check.innerHTML = generarCheckbox(dataJson.events) 
+        check.addEventListener('change', filtroCruzado)
+        search.addEventListener( 'input', filtroCruzado)
+        renderTemplate (crearCards(dataJson.events), ubicacionCards)
+
+})
+.catch(error => error.message)
+
+
+function renderTemplate(template, where){
+    where.innerHTML = template
+}
+
+function crearCards (lista){
     let todasLasCards = ""
     for (let recorrido of lista){
         let template = `<div class="card" style="width: 18rem;">
@@ -23,23 +44,9 @@ function crearCards (lista, dondeVa){
     }
     return todasLasCards
 }
-renderTemplate (crearCards(data.events), ubicacion)
 
-//---------Filtro por categoria (crea un array de las 7 categorias)----------------
-
-const sinRepetir = []
-const categorias = data.events.map(events => events.category)
-
-categorias.forEach(categorias => {
-if (!sinRepetir.includes (categorias)){
-sinRepetir.push (categorias)}
-})
-
-
-const check = document.getElementById("checkboxes")
-check.innerHTML = generarCheckbox(sinRepetir)
-
-function generarCheckbox (categorias){
+function generarCheckbox (infoData){
+    let categorias = new Set (infoData.map(eventInfo => eventInfo.category))
     let template = ""
     categorias.forEach(categorias =>{
         template += `<div class="form-check form-check-inline">   
@@ -51,55 +58,37 @@ function generarCheckbox (categorias){
     return template
 }
 
-// -----------------------------------------------------------------
-
-
-
-
-
-    function checkFilter (touchs, categoriesList){
+function checkFilter (touchs, categoriesList){
         let values = [];
-        for (let touch of touchs){
+        for (let touch of touchs){ 
             if (touch.checked)
             values.push(touch.value.toLowerCase())
         }
         let filters = categoriesList.filter(food => values.includes(food.category.toLowerCase()))
-        if (values.length === 0){
+        if (values.length === 0){ 
             return categoriesList
         }
         else{
-            return filters
+            return filters 
         }
-    }
-    check.addEventListener('change', filtroCruzado)
-
-
-search.addEventListener( 'input', filtroCruzado)
-
-function searchFood(inputFind, categoriesList){
-    const filterFood = categoriesList.filter(food => {
-        return food.name.toLowerCase().startsWith(inputFind.value.toLowerCase())
-    });
-    return filterFood
 }
 
+function searchBuscador(inputFind, categoriesList){
+    const filterBuscador = categoriesList.filter(food => { 
+        return food.name.toLowerCase().startsWith(inputFind.value.toLowerCase())
+    });
+    return filterBuscador 
+}
 
-function filtroCruzado(evento){
+function filtroCruzado(){
     let checkbuttons = document.querySelectorAll(".form-check-input")
-    const filterPerFind = searchFood (search, data.events)
+    const filterPerFind = searchBuscador (search, dataJson.events)
     const filterPerCheack = checkFilter (checkbuttons, filterPerFind)
     if(filterPerCheack.length === 0) {
         let alert = `<h4 class="alert">THERES NO COICIDENCES WITH YOUR SEARCH</h4>`
-        renderTemplate(alert, ubicacion)
+        renderTemplate(alert, ubicacionCards)
     }
     else {
-        renderTemplate(crearCards(filterPerCheack), ubicacion)
+        renderTemplate(crearCards(filterPerCheack), ubicacionCards)
     }
 }
-
-
-function renderTemplate(template, where){
-    where.innerHTML = template
-}
-
-filtroCruzado()

@@ -1,7 +1,24 @@
 let ubicacion = document.getElementById("section-cards")
 const search = document.getElementById('busqueda')
+const check = document.getElementById("checkboxes") 
 
-const upcoming = data.events.filter( equis => equis.date <= data.currentDate )
+let dataJson;
+let past;
+
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+.then(response => response.json())
+.then(datos => {
+
+    dataJson = datos
+    past = dataJson.events.filter( past => past.date <= dataJson.currentDate )
+
+    renderTemplate (crearCards (past), ubicacion)
+        check.innerHTML = generarCheckbox(dataJson.events) 
+        check.addEventListener('change', filtroCruzado)
+        search.addEventListener( 'input', filtroCruzado)
+
+})
+.catch(error => error.message)
 
 function crearCards ( lista ){
     let todasLasCards = ""
@@ -23,23 +40,9 @@ function crearCards ( lista ){
     }
     return todasLasCards
 }
-renderTemplate (crearCards(upcoming), ubicacion)
 
-//---------Filtro por categoria (crea un array de las 7 categorias)----------------
-
-const sinRepetir = []
-const categorias = upcoming.map(events => events.category)
-
-categorias.forEach(categorias => {
-if (!sinRepetir.includes (categorias)){
-sinRepetir.push (categorias)}
-})
-
-
-const check = document.getElementById("checkboxes")
-check.innerHTML = generarCheckbox(sinRepetir)
-
-function generarCheckbox (categorias){
+function generarCheckbox (infoData){
+    let categorias = new Set (infoData.map(eventInfo => eventInfo.category))
     let template = ""
     categorias.forEach(categorias =>{
         template += `<div class="form-check form-check-inline">   
@@ -50,11 +53,6 @@ function generarCheckbox (categorias){
     })
     return template
 }
-
-// -----------------------------------------------------------------
-
-
-
 
     function checkFilter (touchs, categoriesList){
         let values = [];
@@ -70,10 +68,6 @@ function generarCheckbox (categorias){
             return filters
         }
     }
-    check.addEventListener('change', filtroCruzado)
-
-
-search.addEventListener( 'input', filtroCruzado)
 
 function searchFood(inputFind, categoriesList){
     const filterFood = categoriesList.filter(food => {
@@ -82,10 +76,9 @@ function searchFood(inputFind, categoriesList){
     return filterFood
 }
 
-
 function filtroCruzado(evento){
     let checkbuttons = document.querySelectorAll(".form-check-input")
-    const filterPerFind = searchFood (search, upcoming)
+    const filterPerFind = searchFood (search, past)
     const filterPerCheack = checkFilter (checkbuttons, filterPerFind)
     if(filterPerCheack.length === 0) {
         let alert = `<h4 class="alert">THERES NO COICIDENCES WITH YOUR SEARCH</h4>`
@@ -96,9 +89,6 @@ function filtroCruzado(evento){
     }
 }
 
-
 function renderTemplate(template, where){
     where.innerHTML = template
 }
-
-filtroCruzado()
